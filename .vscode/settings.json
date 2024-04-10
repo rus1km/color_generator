@@ -1,8 +1,8 @@
 {
-	"dart.lineLength": 120,
+	"dart.lineLength": 80,
 	"dart.previewFlutterUiGuides": true,
 	"[dart]": {
-		"editor.rulers": [120],
+		"editor.rulers": [80],
 		"editor.formatOnSave": true,
 		"editor.formatOnType": true,
 		"editor.codeActionsOnSave": {
