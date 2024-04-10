@@ -1,4 +1,3 @@
-
 import 'package:color_generator/my_home_page.dart';
 import 'package:flutter/material.dart';
 
