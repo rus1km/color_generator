@@ -1,4 +1,4 @@
-import 'package:color_generator/my_home_page.dart';
+import 'package:color_generator/screens/my_home_page.dart';
 import 'package:flutter/material.dart';
 
 /// The root widget of the application.
