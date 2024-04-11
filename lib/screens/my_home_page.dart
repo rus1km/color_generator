@@ -1,3 +1,4 @@
+import 'package:color_generator/services/random_hue_value_generator.dart';
 import 'package:flutter/material.dart';
 
 /// This widget is the home page of your application. It is stateful, meaning
@@ -21,13 +22,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Color backgroundColor = Colors.yellow;
+  double _hue = 0;
 
-  void _changeColor() {
-    setState(() {
-      backgroundColor =
-          backgroundColor == Colors.yellow ? Colors.blue : Colors.yellow;
-    });
+  // When this method is called background color is changes to another random
+  // color with animation
+  void _changeBackgroundColor() {
+    final generator = RandomHueValueGenerator();
+    setState(() => _hue = generator.generateRandomHue());
   }
 
   @override
@@ -39,21 +40,29 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return GestureDetector(
-      onTap: _changeColor,
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        body: Center(
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              widget.title,
-              style: const TextStyle(
-                fontSize: 28,
+      onTap: _changeBackgroundColor,
+      child: TweenAnimationBuilder<double>(
+        tween: Tween<double>(begin: 0.0, end: _hue),
+        duration: const Duration(milliseconds: 1000),
+        builder: (_, hue, __) {
+          final hsvColor = HSVColor.fromAHSV(1.0, hue, 1.0, 1.0);
+
+          return Scaffold(
+            backgroundColor: hsvColor.toColor(),
+            body: Center(
+              child: Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontSize: 28,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

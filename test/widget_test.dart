@@ -13,7 +13,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
+    // Verify that "Hello there" is on the screen.
     expect(find.text('Hello there'), findsOneWidget);
     expect(find.text('1'), findsNothing);
   });
